@@ -6,6 +6,7 @@ import (
 	"github.com/vikash/gofr/pkg/gofr/logging"
 
 	"github.com/vikash/gofr/pkg/gofr/http/middleware"
+	"github.com/rs/cors"
 
 	"github.com/gorilla/mux"
 )
