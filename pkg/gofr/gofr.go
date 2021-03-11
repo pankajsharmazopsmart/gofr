@@ -18,7 +18,7 @@ import (
 
 // App is the main application in the gofr framework.
 type App struct {
-	httpServer *httpServer
+	httpServer *HttpServer
 	cmd        *cmd
 
 	// container is unexported because this is an internal implementation and applications are provided access to it via Context
@@ -41,8 +41,8 @@ func New() *App {
 		port = defaultHTTPPort
 	}
 
-	app.httpServer = &httpServer{
-		router: gofrHTTP.NewRouter(),
+	app.httpServer = &HttpServer{
+		Router: gofrHTTP.NewRouter(),
 		port:   port,
 	}
 
@@ -74,7 +74,7 @@ func (a *App) Run() {
 	if a.httpServer != nil {
 		wg.Add(1)
 
-		go func(s *httpServer) {
+		go func(s *HttpServer) {
 			defer wg.Done()
 			s.Run(a.container)
 		}(a.httpServer)
@@ -114,7 +114,7 @@ func (a *App) DELETE(pattern string, handler Handler) {
 }
 
 func (a *App) add(method, pattern string, h Handler) {
-	a.httpServer.router.Add(method, pattern, handler{
+	a.httpServer.Router.Add(method, pattern, handler{
 		function:  h,
 		container: a.container,
 	})

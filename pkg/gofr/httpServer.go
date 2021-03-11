@@ -8,12 +8,12 @@ import (
 	http2 "github.com/vikash/gofr/pkg/gofr/http"
 )
 
-type httpServer struct {
-	router *http2.Router
+type HttpServer struct {
+	Router *http2.Router
 	port   int
 }
 
-func (s *httpServer) Run(container *Container) {
+func (s *HttpServer) Run(container *Container) {
 	var srv *http.Server
 
 	container.Logf("Starting server on port: %d\n", s.port)
@@ -27,7 +27,7 @@ func (s *httpServer) Run(container *Container) {
 
 	srv = &http.Server{
 		Addr:    fmt.Sprintf(":%d", s.port),
-		Handler: cors.Handler(s.router),
+		Handler: cors.Handler(s.Router),
 	}
 
 	container.Error(srv.ListenAndServe())

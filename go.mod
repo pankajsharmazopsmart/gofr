@@ -13,6 +13,7 @@ require (
 	github.com/kr/pretty v0.1.0 // indirect
 	github.com/onsi/ginkgo v1.14.1 // indirect
 	github.com/onsi/gomega v1.10.2 // indirect
+	github.com/rs/cors v1.7.0 // indirect
 	github.com/stretchr/testify v1.6.1
 	go.opentelemetry.io/otel v0.13.0
 	go.opentelemetry.io/otel/exporters/trace/zipkin v0.13.0
