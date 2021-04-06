@@ -38,11 +38,11 @@ func (cmd *cmd) Run(container *Container) {
 	ctx := newContext(&cmd2.Responder{}, cmd2.NewRequest(args), container)
 
 	if h == nil {
-		ctx.responder.Respond(nil, ErrCommandNotFound{})
+		ctx.Responder.Respond(nil, ErrCommandNotFound{})
 		return
 	}
 
-	ctx.responder.Respond(h(ctx))
+	ctx.Responder.Respond(h(ctx))
 }
 
 func (cmd *cmd) handler(path string) Handler {

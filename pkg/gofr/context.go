@@ -20,7 +20,7 @@ type Context struct {
 	// responder is private as Handlers do not need to worry about how to respond. But it is still an abstraction over
 	// normal response writer as we want to keep the context independent of http. Will help us in writing CMD application
 	// or grpc servers etc using the same handler signature.
-	responder Responder
+	Responder
 }
 
 /*
@@ -56,7 +56,7 @@ func newContext(w Responder, r Request, container *Container) *Context {
 	return &Context{
 		Context:   r.Context(),
 		Request:   r,
-		responder: w,
+		Responder: w,
 		Container: container,
 	}
 }
